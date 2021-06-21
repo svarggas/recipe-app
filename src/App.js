@@ -32,7 +32,6 @@ const App = () => {
             setResults(data.hits)
         }
 
-        console.log(term, results)
         if(!term && !result.length) setValidateMessage('Please enter a plate you are looking for')
         if(term && result.length) setValidateMessage('No results found!')
 
