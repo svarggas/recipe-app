@@ -69,26 +69,37 @@ const Modal = ({ modalState, changeModalState, recipe }) => {
                                             </ul>
                                         </div>
 
-                                        <p className="text-xl text-gray-600">
-                                            Contains
-                                        </p>
+                                        {
+                                            (recipe.meals).length !== 0 ?
 
-                                        <div className="flex flex-grid flex-wrap">
-                                            {
-                                                (recipe.cautions).map((meal, index) => {
-                                                    return (
-                                                        <div key={`${index}_${meal}`}>
-                                                            <div className="align-bottom mt-4 mr-1">
-                                                                <span className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full p-10 py-2 font-semibold capitalize">
-                                                                    { meal }
-                                                                </span>
-                                                            </div>
-                                                            <span> </span>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                        </div>
+                                            <div>
+                                                <p className="text-xl text-gray-600">
+                                                    Contains
+                                                </p>
+
+                                                <div className="flex flex-grid flex-wrap">
+                                                    
+                                                        {
+                                                            (recipe.cautions).map((meal, index) => {
+                                                                return (
+                                                                    <div key={`${index}_${meal}`}>
+                                                                        <div className="align-bottom mt-4 mr-1">
+                                                                            <span className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full p-10 py-2 font-semibold capitalize">
+                                                                                { meal }
+                                                                            </span>
+                                                                        </div>
+                                                                        <span> </span>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                
+                                                </div>
+                                            </div>
+
+                                            : null
+
+                                        }
                                         
                                     </div>
                                 </div>
