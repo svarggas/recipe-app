@@ -5,6 +5,7 @@ import { result } from 'lodash'
 import Header from './components/Header'
 import Card from './components/Card'
 import Validation from './components/Validation'
+import Modal from './components/Modal'
 
 const App = () => {
 
@@ -15,6 +16,8 @@ const App = () => {
     const [term, setTerm] = useState('')
     const [validateMessage, setValidateMessage] = useState(firstDisplayedMessage)
     const [results, setResults] = useState([])
+    const [modalState, setModalState] = useState(false)
+    const [selectedRecipe, setSelectedRecipe] = useState({})
 
     useEffect(() => {
         const search = async () => {
@@ -27,11 +30,10 @@ const App = () => {
                 }
             })
             setResults(data.hits)
-            console.log(results.hits)
         }
 
-        if(!term && !results.length) setValidateMessage('Please enter a plate you are looking for')
-        if(term && results.length === 0) setValidateMessage('No results found!')
+        if(!term && !result.length) setValidateMessage('Please enter a plate you are looking for')
+        if(term && result.length === 0) setValidateMessage('No results found!')
 
         if (term && !result.length) {
             //First search
@@ -49,6 +51,12 @@ const App = () => {
         }
 
     }, [term])
+
+    const seeDetails = recipe => {
+        console.log(recipe)
+        setSelectedRecipe(recipe)
+        setModalState(!modalState)
+    }
 
     return (
         <div className="bg-white">
@@ -79,7 +87,7 @@ const App = () => {
                                         results.map( result => {
                                             return (
                                                 <div key={result.recipe.uri}>
-                                                    <Card recipe={result.recipe} />
+                                                    <Card recipe={result.recipe} seeDetails={seeDetails} />
                                                 </div>
                                             )
                                         })
@@ -94,6 +102,7 @@ const App = () => {
                 </div>
             </main>
 
+            <Modal modalState={modalState}  changeModalState={() => setModalState(!modalState)} recipe={selectedRecipe} />
         </div>
     )
 }
