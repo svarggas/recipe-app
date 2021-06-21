@@ -32,8 +32,9 @@ const App = () => {
             setResults(data.hits)
         }
 
+        console.log(term, results)
         if(!term && !result.length) setValidateMessage('Please enter a plate you are looking for')
-        if(term && result.length === 0) setValidateMessage('No results found!')
+        if(term && result.length) setValidateMessage('No results found!')
 
         if (term && !result.length) {
             //First search
@@ -53,7 +54,6 @@ const App = () => {
     }, [term])
 
     const seeDetails = recipe => {
-        console.log(recipe)
         setSelectedRecipe(recipe)
         setModalState(!modalState)
     }

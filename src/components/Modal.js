@@ -70,7 +70,7 @@ const Modal = ({ modalState, changeModalState, recipe }) => {
                                         </div>
 
                                         {
-                                            recipe.meals.length !== 0 ?
+                                            recipe.cautions.length !== 0 ?
 
                                             <div>
                                                 <p className="text-xl text-gray-600">
